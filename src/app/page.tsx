@@ -9,7 +9,7 @@ export default async function Home() {
   if (!session) redirect("/login");
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-svh py-4 px-2 mx-auto w-full max-w-96 gap-4">
+    <div className="flex flex-col justify-center items-center gap-4 max-w-xl w-full">
       <TodoForm />
       <Todos />
     </div>

@@ -33,11 +33,13 @@ model User {
 }
 
 model Todo {
-  id      String @id @default(auto()) @map("_id") @db.ObjectId
-  userId  String @db.ObjectId
-  User    User   @relation(fields: [userId], references: [id])
-  content String @db.String
-  status  Status @default(UNCOMPLETED)
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  User      User     @relation(fields: [userId], references: [id])
+  content   String   @db.String
+  status    Status   @default(UNCOMPLETED)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("todo")
 }

@@ -1,9 +1,21 @@
+"use client";
+
 import { addTodo } from "@/actions/addTodo";
+import { useRef } from "react";
 import { Button } from "./ui/Button";
 
 export const TodoForm = async () => {
+  const ref = useRef<HTMLFormElement>(null);
+
   return (
-    <form action={addTodo} className="w-full flex flex-col gap-4">
+    <form
+      ref={ref}
+      action={async (formData) => {
+        await addTodo(formData);
+        ref.current?.reset();
+      }}
+      className="w-full flex flex-col gap-4"
+    >
       <input
         type="text"
         name="content"

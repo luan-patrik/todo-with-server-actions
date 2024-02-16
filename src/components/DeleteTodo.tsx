@@ -1,19 +1,34 @@
 "use client";
 
 import { deleteTodo } from "@/actions/deleteTodo";
-import { Button } from "./ui/Button";
+import { useState } from "react";
+import { Trash } from "./Icons/Trash";
 
 interface DeleteTodoProps {
   id: string;
 }
 
 export const DeleteTodo = ({ id }: DeleteTodoProps) => {
+  const [isPending, setIsPending] = useState<boolean>(false);
+
+  const handleDelete = async (id: string) => {
+    setIsPending(true);
+    try {
+      await deleteTodo(id);
+    } catch (error) {
+      return null;
+    } finally {
+      setIsPending(false);
+    }
+  };
+
   return (
-    <Button
-      className="text-red-700 hover:text-red-600 transition focus-visible:ring-1 focus-visible:ring-offset-transparent focus-visible:ring-slate-950 font-semibold outline-none rounded-md p-0.5 focus-visible:text-red-600"
-      onClick={() => deleteTodo(id)}
+    <button
+      className="text-red-500/50 hover:text-red-500 transition focus-visible:ring-1 focus-visible:ring-offset-transparent focus-visible:ring-slate-950 outline-none rounded-md p-0.5 focus-visible:text-red-700 disabled:opacity-50"
+      onClick={async () => await handleDelete(id)}
+      disabled={isPending}
     >
-      Apagar
-    </Button>
+      <Trash className="size-5" />
+    </button>
   );
 };

@@ -6,22 +6,20 @@ import { revalidatePath } from "next/cache";
 
 export const addTodo = async (formData: FormData) => {
   const session = await auth();
+  const content = formData.get("content");
+
+  if (!session) return { success: false, error: "Unauthorized" };
+
   try {
-    const content = formData.get("content");
-
-    if (!session) return { success: false };
-
     await prisma.todo.create({
       data: {
         userId: session.user.id as string,
         content: content as string,
       },
     });
-
-    revalidatePath("/");
-
-    return { success: true };
   } catch (error) {
-    return { success: false, error };
+    return { success: false, error: "Failed to add todo" };
   }
+
+  revalidatePath("/");
 };

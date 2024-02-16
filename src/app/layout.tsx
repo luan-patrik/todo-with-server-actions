@@ -16,8 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`bg-gray-800  text-gray-50 ${inter.className}`}>
-        <main className="max-w-[1200px] mx-auto">{children}</main>
+      <body className={`bg-slate-800 text-slate-50 ${inter.className}`}>
+        <main className="max-w-[1200px] flex justify-center items-center min-h-svh mx-auto">
+          {children}
+        </main>
       </body>
     </html>
   );

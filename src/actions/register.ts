@@ -26,9 +26,7 @@ export const registerUser = async (formData: FormData) => {
         password: passwordHashed,
       },
     });
-
-    return { success: true };
   } catch (error) {
-    return { success: false, error };
+    return { success: false, error: "Failed to register user" };
   }
 };

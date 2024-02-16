@@ -6,28 +6,25 @@ export const Todos = async () => {
   const { todos } = await getTodos();
 
   return (
-    <ul className="space-y-2 w-full max-w-96">
+    <ul className="flex flex-col w-full gap-y-4">
       {todos &&
         todos.map((todo) => (
-          <li
+          <div
             key={todo.id}
-            className="border-b border-slate-400 flex flex-col p-1"
+            className="flex justify-between items-center"
           >
-            <div className="gap-2 flex break-words w-full">
-              <UpdateStatusTodo
-                id={todo.id}
-                checked={todo.status === "COMPLETED"}
-              />
-              <p className="break-words w-full">
-                {todo.status === "COMPLETED" ? (
-                  <s>{todo.content}</s>
-                ) : (
-                  todo.content
-                )}
-              </p>
+            <li className="w-full flex break-all">
+              {todo.status === "COMPLETED" ? (
+                <s>{todo.content}</s>
+              ) : (
+                todo.content
+              )}
+            </li>
+            <div className="flex items-center gap-2">
+              <UpdateStatusTodo id={todo.id} value={todo.status} />
+              <DeleteTodo id={todo.id} />
             </div>
-            <DeleteTodo id={todo.id} />
-          </li>
+          </div>
         ))}
     </ul>
   );

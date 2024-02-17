@@ -20,7 +20,7 @@ export const TodoForm = async () => {
         type="text"
         name="content"
         className="text-slate-950 outline-none rounded-md p-2"
-        placeholder="What needs to be done?"
+        placeholder="Qual sua tarefa do dia?"
         autoFocus
         required
       />

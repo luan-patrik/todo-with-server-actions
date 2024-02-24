@@ -53,8 +53,8 @@ export const RegisterForm = () => {
         </Link>
       </span>
       <Button
+        type="submit"
         className="hover:bg-slate-950 transition border-slate-950 disabled:opacity-50 disabled:cursor-not-allowed p-2 rounded-md border outline-none focus-visible:bg-slate-950"
-        isPending="Cadastrando..."
       >
         Cadastrar
       </Button>
